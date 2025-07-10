@@ -23,9 +23,6 @@
         <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="./ofertas.html">🔥Ofertas</a>
-        </li>
         <li class="nav-item dropdown" id="productos-menu">
         <a class="nav-link dropdown-toggle" href="./productosgaming.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Productos
@@ -59,13 +56,42 @@ productosLink.addEventListener('click', function (e) {
 </form>
 
 
-<div class="cart-summary">
-<i class="fas fa-shopping-cart"></i>
-<span class="cart-count">0</span>
-<span class="cart-separator">/</span>
-<span class="cart-total">0 ARS</span>
+<div class="cart-summary" onclick="openCart()">
+  <i class="fas fa-shopping-cart"></i>
+  <span class="cart-count">0</span>
+  <span class="cart-separator">/</span>
+  <span class="cart-total">0 ARS</span>
 </div>
 
+<!-- 🔽 Acá pegás esto (PRIMERA PARTE) -->
+<div id="checkout-panel" class="cart-panel hidden">
+  <h3>🧾 Finalizar Compra</h3>
+  <form id="checkout-form" action="https://formspree.io/f/xanegkve" method="POST">
+    <div id="checkout-items"></div>
+
+    <input type="hidden" name="Productos" id="productos-field" />
+
+    <p style="margin-top: 20px;">Dirección de envío:</p>
+    <input type="text" name="Dirección" required placeholder="Ej: Calle 123" />
+
+    <p style="margin-top: 15px;">Correo electrónico:</p>
+    <input type="email" name="Correo" required placeholder="tucorreo@ejemplo.com" />
+
+    <p style="margin-top: 15px;">Medio de pago:</p>
+    <select name="Tarjeta" required>
+      <option value="">Seleccioná una opción</option>
+      <option value="Visa">💳 Tarjeta de Credito</option>
+      <option value="MasterCard">💳 Tarjeta de Debito</option>
+      <option value="MercadoPago">💰 MercadoPago</option>
+    </select>
+
+    <p style="margin-top: 15px; color:#aaa;">🚚 Envío gratis a todo el país</p>
+
+    <button type="submit" class="clear-btn">Confirmar compra</button>
+    <button type="button" class="close-btn" onclick="closeCheckout()">Cerrar</button>
+
+  </form>
+</div>
 
 
     </div>
@@ -74,43 +100,492 @@ productosLink.addEventListener('click', function (e) {
 </nav>
     </header>
     
+<div id="cart-panel" class="cart-panel hidden">
+  <h3>🛒 Carrito</h3>
+  <div id="cart-items"></div>
+  <div id="cart-total" class="total"></div>
+  <button onclick="clearCart()" class="clear-btn">Vaciar</button>
+  <button class="clear-btn" onclick="openCheckout()">Comprar</button>
+  <button onclick="closeCart()" class="close-btn">Cerrar</button>
+</div>
 
 
-    <main>
-        <section>
-            <h1>Monitores Gamer
-        </section>
-        <div class="product-list">
-            <div class="product-card">
-            <img src="imagenes/monitorgamer2.jpeg" alt="Monitor Gamer">
-            <h3>Monitor 1</h3>
-            <p>Precio: $5000</p>
-            </div>
-            <div class="product-card">
-            <img src="imagenes/monitorgamer.jpeg" alt="Monitor Gamer 2">
-            <h3>Monitor 2</h3>
-            <p>Precio: $6000</p>
-            </div>
-        </div>
+     <main>
+    <h1>Monitores Gamer</h1>
+      <div class="product-list">
+  <div class="product-card">
+    <img src="imagenes/monitor3.jpg" alt="Monitor Predator X34">
+    <div class="product-info">
+      <h3>Monitor Predator X34</h3>
+      <span class="price">$15500</span>
+      <button class="btn-add-cart" data-name="Monitor Predator X34" data-price="15500" data-img="imagenes/monitor3.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/monitor4.jpg" alt="Monitor Curvo 27 Redline">
+    <div class="product-info">
+      <h3>Monitor Curvo 27 Redline</h3>
+      <span class="price">$11900</span>
+      <button class="btn-add-cart" data-name="Monitor Curvo 27 Redline" data-price="11900" data-img="imagenes/monitor4.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/monitor5.jpg" alt="Monitor Lenovo Legion Y25">
+    <div class="product-info">
+      <h3>Monitor Lenovo Legion Y25</h3>
+      <span class="price">$13200</span>
+      <button class="btn-add-cart" data-name="Monitor Lenovo Legion Y25" data-price="13200" data-img="imagenes/monitor5.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/monitor6.jpg" alt="Monitor AOC Warrior RGB">
+    <div class="product-info">
+      <h3>Monitor AOC Warrior RGB</h3>
+      <span class="price">$11000</span>
+      <button class="btn-add-cart" data-name="Monitor AOC Warrior RGB" data-price="11000" data-img="imagenes/monitor6.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
 
-        <section>
-            <h1>Auriculares Gamer</h1>
-        </section>
-        <div class="product-list">
-            <div class="product-card">
-            <img src="./imagenes/auris1.jpeg" alt="Auriculares Gamer 1">
-            <h3>Auricular 1 </h3>
-            <p>Precio: $1500</p>
-            </div>
-            <div class="product-card">
-            <img src="imagenes/auris2.jpeg" alt="Auriculares Gamer 2">
-            <h3>Auricular 2</h3>
-            <p>Precio: $2000</p>
-            </div>
-        </div>
-        
-    </main>
+  <div class="product-card">
+    <img src="imagenes/monitor8.jpg" alt="Monitor Samsung Smart Curvo">
+    <div class="product-info">
+      <h3>Monitor Samsung Smart Curvo</h3>
+      <span class="price">$13700</span>
+      <button class="btn-add-cart" data-name="Monitor Samsung Smart Curvo" data-price="13700" data-img="imagenes/monitor8.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+    </div>
 
+    <h1>Auriculares Gamer</h1>
+
+
+      <div class="product-list">
+  <div class="product-card">
+    <img src="imagenes/auricular3.jpg" alt="Auricular Camuflado RGB">
+    <div class="product-info">
+      <h3>Auricular Camuflado RGB</h3>
+      <span class="price">$4800</span>
+      <button class="btn-add-cart" data-name="Auricular Camuflado RGB" data-price="4800" data-img="imagenes/auricular3.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/auricular4.jpg" alt="Auricular Redragon Zeus">
+    <div class="product-info">
+      <h3>Auricular Redragon Zeus</h3>
+      <span class="price">$6500</span>
+      <button class="btn-add-cart" data-name="Auricular Redragon Zeus" data-price="6500" data-img="imagenes/auricular4.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/auricular5.jpg" alt="Auricular Redragon RGB">
+    <div class="product-info">
+      <h3>Auricular Redragon RGB</h3>
+      <span class="price">$5900</span>
+      <button class="btn-add-cart" data-name="Auricular Redragon RGB" data-price="5900" data-img="imagenes/auricular5.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/auricular6.jpg" alt="Auricular Corsair White">
+    <div class="product-info">
+      <h3>Auricular Corsair White</h3>
+      <span class="price">$7200</span>
+      <button class="btn-add-cart" data-name="Auricular Corsair White" data-price="7200" data-img="imagenes/auricular6.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/auricular7.jpg" alt="Auricular Pro Gamer Blanco">
+    <div class="product-info">
+      <h3>Auricular Pro Gamer Blanco</h3>
+      <span class="price">$6800</span>
+      <button class="btn-add-cart" data-name="Auricular Pro Gamer Blanco" data-price="6800" data-img="imagenes/auricular7.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+
+    </div>
+
+    <h1>Mouses Gamer</h1>
+  <div class="product-list">
+    <div class="product-card">
+      <img src="imagenes/mouse1.jpg" alt="Logitech G203 White">
+      <div class="product-info">
+        <h3>Logitech G203 White</h3>
+        <span class="price">$4900</span>
+        <button class="btn-add-cart" 
+          data-name="Logitech G203 White" 
+          data-price="4900" 
+          data-img="imagenes/mouse1.jpg">
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="imagenes/mouse2.jpg" alt="Mouse RGB Inalámbrico">
+      <div class="product-info">
+        <h3>Mouse RGB Inalámbrico</h3>
+        <span class="price">$5200</span>
+        <button class="btn-add-cart" 
+          data-name="Mouse RGB Inalámbrico" 
+          data-price="5200" 
+          data-img="imagenes/mouse2.jpg">
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="imagenes/mouse3.jpg" alt="Mouse Ice Crack RGB">
+      <div class="product-info">
+        <h3>Mouse Ice Crack RGB</h3>
+        <span class="price">$4700</span>
+        <button class="btn-add-cart" 
+          data-name="Mouse Ice Crack RGB" 
+          data-price="4700" 
+          data-img="imagenes/mouse3.jpg">
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="imagenes/mouse4.jpg" alt="Mouse Hive Ultra Light">
+      <div class="product-info">
+        <h3>Mouse Hive Ultra Light</h3>
+        <span class="price">$5300</span>
+        <button class="btn-add-cart" 
+          data-name="Mouse Hive Ultra Light" 
+          data-price="5300" 
+          data-img="imagenes/mouse4.jpg">
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="imagenes/mouse5.jpg" alt="Mouse Hive Rainbow Edition">
+      <div class="product-info">
+        <h3>Mouse Hive Rainbow Edition</h3>
+        <span class="price">$5500</span>
+        <button class="btn-add-cart" 
+          data-name="Mouse Hive Rainbow Edition" 
+          data-price="5500" 
+          data-img="imagenes/mouse5.jpg">
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+    
+<h1>Teclados Gamer</h1>
+<div class="product-list">
+  <div class="product-card">
+    <img src="imagenes/t1.jpg" alt="Teclado RGB Compacto Blanco">
+    <div class="product-info">
+      <h3>Teclado RGB Compacto Blanco</h3>
+      <span class="price">$4800</span>
+      <button class="btn-add-cart" data-name="Teclado RGB Compacto Blanco" data-price="4800" data-img="imagenes/t1.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/t2.jpg" alt="Teclado Mecánico Red LED">
+    <div class="product-info">
+      <h3>Teclado Mecánico Red LED</h3>
+      <span class="price">$4300</span>
+      <button class="btn-add-cart" data-name="Teclado Mecánico Red LED" data-price="4300" data-img="imagenes/t2.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/t3.jpg" alt="Teclado Keychron White Pro">
+    <div class="product-info">
+      <h3>Teclado Keychron White Pro</h3>
+      <span class="price">$5900</span>
+      <button class="btn-add-cart" data-name="Teclado Keychron White Pro" data-price="5900" data-img="imagenes/t3.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/t4.jpg" alt="Teclado Gamer Black RGB">
+    <div class="product-info">
+      <h3>Teclado Gamer Black RGB</h3>
+      <span class="price">$5100</span>
+      <button class="btn-add-cart" data-name="Teclado Gamer Black RGB" data-price="5100" data-img="imagenes/t4.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/t5.jpg" alt="Teclado HyperX Rainbow">
+    <div class="product-info">
+      <h3>Teclado HyperX Rainbow</h3>
+      <span class="price">$6200</span>
+      <button class="btn-add-cart" data-name="Teclado HyperX Rainbow" data-price="6200" data-img="imagenes/t5.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+
+   <h1>Sillas Gamer</h1>
+<div class="product-list">
+  <div class="product-card">
+    <img src="imagenes/silla1.jpg" alt="Silla AKRacing Roja">
+    <div class="product-info">
+      <h3>Silla AKRacing Roja</h3>
+      <span class="price">$16500</span>
+      <button class="btn-add-cart" data-name="Silla AKRacing Roja" data-price="16500" data-img="imagenes/silla1.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/silla2.jpg" alt="Silla Ergonómica Blanca">
+    <div class="product-info">
+      <h3>Silla Ergonómica Blanca</h3>
+      <span class="price">$17800</span>
+      <button class="btn-add-cart" data-name="Silla Ergonómica Blanca" data-price="17800" data-img="imagenes/silla2.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/silla3.jpg" alt="Silla RGB Titan">
+    <div class="product-info">
+      <h3>Silla RGB Titan</h3>
+      <span class="price">$19500</span>
+      <button class="btn-add-cart" data-name="Silla RGB Titan" data-price="19500" data-img="imagenes/silla3.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/silla4.jpg" alt="Silla Gamer Blanconegra">
+    <div class="product-info">
+      <h3>Silla Gamer Blanconegra</h3>
+      <span class="price">$15900</span>
+      <button class="btn-add-cart" data-name="Silla Gamer Blanconegra" data-price="15900" data-img="imagenes/silla4.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/silla5.jpg" alt="Silla Gamer RGB Raidmax">
+    <div class="product-info">
+      <h3>Silla Gamer RGB Raidmax</h3>
+      <span class="price">$18700</span>
+      <button class="btn-add-cart" data-name="Silla Gamer RGB Raidmax" data-price="18700" data-img="imagenes/silla5.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+
+  <h1>Parlantes Gamer RGB</h1>
+<div class="product-list">
+  <div class="product-card">
+    <img src="imagenes/p1.jpg" alt="Parlante RGB Compacto">
+    <div class="product-info">
+      <h3>Parlante RGB Compacto</h3>
+      <span class="price">$3200</span>
+      <button class="btn-add-cart" data-name="Parlante RGB Compacto" data-price="3200" data-img="imagenes/p1.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/p2.jpg" alt="Parlante Vertical RGB">
+    <div class="product-info">
+      <h3>Parlante Vertical RGB</h3>
+      <span class="price">$3400</span>
+      <button class="btn-add-cart" data-name="Parlante Vertical RGB" data-price="3400" data-img="imagenes/p2.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/p3.jpg" alt="Parlante Redragon LUX">
+    <div class="product-info">
+      <h3>Parlante Redragon LUX</h3>
+      <span class="price">$3600</span>
+      <button class="btn-add-cart" data-name="Parlante Redragon LUX" data-price="3600" data-img="imagenes/p3.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/p4.jpg" alt="Parlante Havit RGB V2">
+    <div class="product-info">
+      <h3>Parlante Havit RGB V2</h3>
+      <span class="price">$3700</span>
+      <button class="btn-add-cart" data-name="Parlante Havit RGB V2" data-price="3700" data-img="imagenes/p4.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="imagenes/p5.jpg" alt="Parlante RGB Redragon Inferno">
+    <div class="product-info">
+      <h3>Parlante RGB Redragon Inferno</h3>
+      <span class="price">$3900</span>
+      <button class="btn-add-cart" data-name="Parlante RGB Redragon Inferno" data-price="3900" data-img="imagenes/p5.jpg">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+
+  </div>
+  </main>
+  <script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function updateCartSummary() {
+  const cartCount = document.querySelector(".cart-count");
+  const cartTotal = document.querySelector(".cart-total");
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  cartCount.textContent = totalItems;
+  cartTotal.textContent = `${totalPrice} ARS`;
+}
+
+function openCart() {
+  document.getElementById("cart-panel").classList.remove("hidden");
+  renderCart();
+}
+
+function closeCart() {
+  document.getElementById("cart-panel").classList.add("hidden");
+}
+
+function renderCart() {
+  const cartItemsContainer = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+  cartItemsContainer.innerHTML = "";
+  let total = 0;
+
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = "<p>Carrito vacío</p>";
+    cartTotal.textContent = "";
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.className = "cart-item";
+    itemDiv.innerHTML = `
+      <img src="${item.img}" alt="" width="40" style="margin-right:10px">
+      <div style="flex: 1">
+        <strong>${item.name}</strong><br>
+        <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
+      </div>
+      <span>$${item.price * item.quantity}</span>
+      <button onclick="removeItem(${index})">x</button>
+    `;
+    cartItemsContainer.appendChild(itemDiv);
+    total += item.price * item.quantity;
+  });
+
+  cartTotal.textContent = `Total: $${total}`;
+}
+
+function updateQuantity(index, qty) {
+  cart[index].quantity = parseInt(qty);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+  updateCartSummary();
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+  updateCartSummary();
+}
+
+function clearCart() {
+  localStorage.removeItem("cart");
+  cart = [];
+  renderCart();
+  updateCartSummary();
+}
+
+// Agregar al carrito
+
+document.querySelectorAll(".btn-add-cart").forEach(button => {
+  button.addEventListener("click", () => {
+    const name = button.getAttribute("data-name");
+    const price = parseFloat(button.getAttribute("data-price"));
+    const img = button.getAttribute("data-img") || "";
+    const existingItem = cart.find(item => item.name === name);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({ name, price, quantity: 1, img });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartSummary();
+  });
+});
+
+document.addEventListener("DOMContentLoaded", updateCartSummary);
+</script>
+<script>
+function openCheckout() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (cart.length === 0) return alert("El carrito está vacío.");
+
+  // Cerrar carrito antes de abrir checkout
+  closeCart();
+
+  const checkoutPanel = document.getElementById("checkout-panel");
+  const checkoutItems = document.getElementById("checkout-items");
+  const productosField = document.getElementById("productos-field");
+
+  let productosTexto = "";
+  checkoutItems.innerHTML = "";
+  cart.forEach((item) => {
+    const div = document.createElement("div");
+    div.style.marginBottom = "8px";
+    div.innerHTML = `
+      <strong>${item.name}</strong> x ${item.quantity} → $${item.price * item.quantity}
+    `;
+    checkoutItems.appendChild(div);
+    productosTexto += `${item.name} x ${item.quantity} ($${item.price * item.quantity})\n`;
+  });
+
+  productosField.value = productosTexto.trim();
+
+  checkoutPanel.classList.remove("hidden");
+}
+</script>
+
+<script>
+function closeCheckout() {
+  const panel = document.getElementById("checkout-panel");
+  if (panel) {
+    panel.classList.add("hidden");
+  }
+}
+</script>
+
+
+</body>
 <footer>
     <hr>
     <p>Estudiante: Lucas Molina - 2025 ! Email: contacto@compragamer.com</p>
@@ -118,5 +593,3 @@ productosLink.addEventListener('click', function (e) {
     <i class="fa-brands fa-linkedin"></i>
 <hr>
 </footer>
-</body>
-</html>
